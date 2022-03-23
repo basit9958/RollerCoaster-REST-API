@@ -8,9 +8,6 @@ import (
 type Coaster struct {
 	Name         string `json:"name"`
 	Manufacturer string `json:"manufacturer"`
-	ID           string `json:"id"`
-	InPark       string `json:"inpark"`
-	Height       string `json:"height"`
 }
 
 type coasterHandlers struct {
@@ -35,20 +32,16 @@ func newCoasterHandlers() *coasterHandlers {
 	return &coasterHandlers{
 		store: map[string]Coaster{
 			"id1": Coaster{
-				Name:         "name",
-				Manufacturer: "manufacturer",
-				ID:           "id",
-				InPark:       "inpark",
-				Height:       "height",
+				Name:         "Fury 311",
+				Manufacturer: "BMW",
 			},
 		},
 	}
 }
-
 func main() {
 	coasterHandlers := newCoasterHandlers()
 	http.HandleFunc("/coasters", coasterHandlers.get)
-	err := http.ListenAndServe(":8081", nil)
+	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		panic(err)
 	}
